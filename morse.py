@@ -93,6 +93,7 @@ morse_decode = {
 def main():
     # TODO validate text input with regex
     # TODO validate morse code input with regex
+    # TODO proces file with text/morse code
 
     parser = argparse.ArgumentParser(description="Morse encode/decode")
     parser.add_argument("-c", default="encode", help="select encode or decode", type=str)
@@ -127,11 +128,18 @@ def convert_from_morse_code(code: str):
 
 def convert_to_morse_code(text: str):
     code = ""
-    for char in text:
-        try:
-            code += morse_encode[char] + "   "
-        except KeyError:
-            raise KeyError(f"Cannot encode character: {char}")
+    words = text.split(" ")
+    if not words:
+        words = [text]
+    for word in words:
+        for char in word:
+            try:
+                # separate each symbol by three spaces
+                code += morse_encode[char] + "   "
+            except KeyError:
+                raise KeyError(f"Cannot encode character: {char}")
+        # add 4 spaces to separate words by 7 spaces
+        code += "    "
     return code.strip()
 
 
