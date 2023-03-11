@@ -85,6 +85,7 @@ morse_decode = {
     "- - - . .": "8",
     "- - - - .": "9",
     "- - - - -": "0",
+    "   ": "",
     "       ": " "
 }
 
@@ -92,7 +93,7 @@ morse_decode = {
 def main():
     # TODO validate text input with regex
     # TODO validate morse code input with regex
-    # TODO use command line argument to select morse encode or decode
+
     parser = argparse.ArgumentParser(description="Morse encode/decode")
     parser.add_argument("-c", default="encode", help="select encode or decode", type=str)
     args = parser.parse_args()
@@ -100,7 +101,26 @@ def main():
     if args.c == "encode":
         print(convert_to_morse_code(input("Text: ").lower()))
     else:
-        pass
+        print(convert_from_morse_code(input("Morse code: ")))
+
+
+def convert_from_morse_code(code: str):
+    text = ""
+    words = code.split("       ")
+
+    if not words:
+        words = [code]
+
+    for word in words:
+        chars = word.split("   ")
+
+        for char in chars:
+            try:
+                text += morse_decode[char]
+            except KeyError:
+                raise KeyError(f"Cannot decode morse code symbol: {char}")
+
+    return text
 
 
 def convert_to_morse_code(text: str):
@@ -109,7 +129,7 @@ def convert_to_morse_code(text: str):
         try:
             code += morse_encode[char] + "   "
         except KeyError:
-            raise KeyError(f"Cannot encode character {char}")
+            raise KeyError(f"Cannot encode character: {char}")
     return code.strip()
 
 
