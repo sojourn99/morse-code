@@ -1,3 +1,6 @@
+import re
+import sys
+
 # International Morse code
 # The length of a dot is one unit, dit: . ●
 # A dash is three units, dah: - ■■■ (three dits)
@@ -96,8 +99,11 @@ def main():
 def convert_to_morse_code(text: str):
     code = ""
     for char in text:
-        code += morse_encode[char] + "   "
-    return code
+        try:
+            code += morse_encode[char] + "   "
+        except KeyError:
+            raise KeyError(f"Cannot encode character {char}")
+    return code.strip()
 
 
 if __name__ == "__main__":
