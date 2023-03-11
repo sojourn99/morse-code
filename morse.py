@@ -1,5 +1,5 @@
+import argparse
 import re
-import sys
 
 # International Morse code
 # The length of a dot is one unit, dit: . ●
@@ -93,7 +93,14 @@ def main():
     # TODO validate text input with regex
     # TODO validate morse code input with regex
     # TODO use command line argument to select morse encode or decode
-    print(convert_to_morse_code(input("Text: ").lower()))
+    parser = argparse.ArgumentParser(description="Morse encode/decode")
+    parser.add_argument("-c", default="encode", help="select encode or decode", type=str)
+    args = parser.parse_args()
+    print(args.c)
+    if args.c == "encode":
+        print(convert_to_morse_code(input("Text: ").lower()))
+    else:
+        pass
 
 
 def convert_to_morse_code(text: str):
