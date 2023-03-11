@@ -119,8 +119,10 @@ def convert_from_morse_code(code: str):
                 text += morse_decode[char]
             except KeyError:
                 raise KeyError(f"Cannot decode morse code symbol: {char}")
+        # separate words by one space
+        text += " "
 
-    return text
+    return text.strip()
 
 
 def convert_to_morse_code(text: str):
