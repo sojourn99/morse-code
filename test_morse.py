@@ -35,6 +35,12 @@ def test_morse_decode_correct_input():
 
 
 def test_morse_decode_incorrect_input():
+    # no space separation
     with pytest.raises(KeyError) as exc_info:
         convert_from_morse_code("...")
-        assert str(exc_info.value) == "'Cannot decode morse code symbol: ...'"
+    assert str(exc_info.value) == "'Cannot decode morse code symbol: ...'"
+
+    # non existent morse symbol
+    with pytest.raises(KeyError) as exc_info:
+        convert_from_morse_code("- - - -")
+    assert str(exc_info.value) == "'Cannot decode morse code symbol: - - - -'"
