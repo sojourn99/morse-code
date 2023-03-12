@@ -91,18 +91,34 @@ morse_decode = {
 
 
 def main():
-    # TODO validate text input with regex
-    # TODO validate morse code input with regex
-    # TODO proces file with text/morse code
+    # TODO proces file with text/morse code, output to file
+    # TODO add README.md
+    # TODO add requirements.txt
 
     parser = argparse.ArgumentParser(description="Morse encode/decode")
     parser.add_argument("-c", default="encode", help="select encode or decode", type=str)
     args = parser.parse_args()
     print(args.c)
     if args.c == "encode":
-        print(convert_to_morse_code(input("Text: ").lower()))
+        text_input = input("Text: ").lower()
+        if validate_text_input(text_input):
+            print(convert_to_morse_code(text_input))
+        else:
+            print("Invalid input")
     else:
-        print(convert_from_morse_code(input("Morse code: ")))
+        morse_code_input = input("Morse code: ")
+        if validate_morse_code(morse_code_input):
+            print(convert_from_morse_code(morse_code_input))
+        else:
+            print("Invalid input")
+
+
+def validate_text_input(text):
+    return re.search(r"^[a-zA-Z0-9]+$", text)
+
+
+def validate_morse_code(morse_code):
+    return re.search(r"^[\.\- ]+$", morse_code)
 
 
 def convert_from_morse_code(code: str):
