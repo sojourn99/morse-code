@@ -4,6 +4,7 @@ import pytest
 
 def test_validate_text_input_correct():
     assert validate_text_input("SOS")
+    assert validate_text_input("This is test number 17")
 
 
 def test_validate_text_input_incorrect():
@@ -21,6 +22,7 @@ def test_validate_morse_input_incorrect():
 def test_morse_encode_correct_input():
     assert convert_to_morse_code("sos") == "● ● ●   ■■■ ■■■ ■■■   ● ● ●"
     assert convert_to_morse_code("sos sos") == "● ● ●   ■■■ ■■■ ■■■   ● ● ●       ● ● ●   ■■■ ■■■ ■■■   ● ● ●"
+    assert convert_to_morse_code("this is test number 17") == "■■■   ● ● ● ●   ● ●   ● ● ●       ● ●   ● ● ●       ■■■   ●   ● ● ●   ■■■       ■■■ ●   ● ● ■■■   ■■■ ■■■   ■■■ ● ● ●   ●   ● ■■■ ●       ● ■■■ ■■■ ■■■ ■■■   ■■■ ■■■ ● ● ●"
 
 
 def test_morse_encode_incorrect_input():
@@ -32,6 +34,7 @@ def test_morse_encode_incorrect_input():
 def test_morse_decode_correct_input():
     assert convert_from_morse_code(". . .   - - -   . . .") == "sos"
     assert convert_from_morse_code(". . .   - - -   . . .       . . .   - - -   . . .") == "sos sos"
+    assert convert_from_morse_code("-   . . . .   . .   . . .       . .   . . .       -   .   . . .   -       - .   . . -   - -   - . . .   .   . - .       . - - - -   - - . . .") == "this is test number 17"
 
 
 def test_morse_decode_incorrect_input():
