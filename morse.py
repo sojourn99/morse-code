@@ -100,7 +100,7 @@ def main():
                                      description="Encodes text to Morse and decodes Morse code to text")
     parser.add_argument("-d", "--direction", choices=["encode", "decode"], help="select encode or decode", type=str)
     args = parser.parse_args()
-    print(args.direction)
+
     if args.direction == "encode":
         text_input = input("Text: ").lower()
         if validate_text_input(text_input):
@@ -124,7 +124,7 @@ def validate_text_input(text: str):
     :return: True or False
     :rtype: boolean
     """
-    return re.search(r"^[a-zA-Z0-9]+$", text)
+    return re.search(r"^[a-zA-Z0-9 ]+$", text)
 
 
 def validate_morse_code(morse_code: str):
