@@ -92,14 +92,16 @@ morse_decode = {
 
 def main():
     # TODO proces file with text/morse code, output to file
+    # TODO add procedural signs for morse code
     # TODO add README.md
     # TODO add requirements.txt
 
-    parser = argparse.ArgumentParser(description="Morse encode/decode")
-    parser.add_argument("-c", default="encode", help="select encode or decode", type=str)
+    parser = argparse.ArgumentParser(prog="Morse code",
+                                     description="Encodes text to Morse and decodes Morse code to text")
+    parser.add_argument("-d", "--direction", choices=["encode", "decode"], help="select encode or decode", type=str)
     args = parser.parse_args()
-    print(args.c)
-    if args.c == "encode":
+    print(args.direction)
+    if args.direction == "encode":
         text_input = input("Text: ").lower()
         if validate_text_input(text_input):
             print(convert_to_morse_code(text_input))
@@ -113,15 +115,39 @@ def main():
             print("Invalid input")
 
 
-def validate_text_input(text):
+def validate_text_input(text: str):
+    """
+    Validates text input. Permitted are lower- and uppercase letters and digits.
+
+    :param text: text to be validated
+    :type text: str
+    :return: True or False
+    :rtype: boolean
+    """
     return re.search(r"^[a-zA-Z0-9]+$", text)
 
 
-def validate_morse_code(morse_code):
+def validate_morse_code(morse_code: str):
+    """
+    Validates morse code input. Permitted are dots (.), dashes (-) and space characters.
+
+    :param morse_code: code to be validated
+    :type morse_code: str
+    :return: True or False
+    :rtype: boolean
+    """
     return re.search(r"^[\.\- ]+$", morse_code)
 
 
 def convert_from_morse_code(code: str):
+    """
+    Decodes morse code to text.
+
+    :param code: the morse code to be decoded
+    :type code: str
+    :return: decoded morse code
+    :rtype: str
+    """
     text = ""
     words = code.split("       ")
 
@@ -143,6 +169,14 @@ def convert_from_morse_code(code: str):
 
 
 def convert_to_morse_code(text: str):
+    """
+    Encodes text to morse code.
+
+    :param text: the text to be encoded
+    :type text: str
+    :return: encoded text
+    :rtype: str
+    """
     code = ""
     words = text.split(" ")
     if not words:
