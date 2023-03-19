@@ -16,8 +16,9 @@ Short explanation of International Morse code:
 + The space between words is seven units.
 
 To run the program:
-
-`$ python .\morse.py [-h] [-d {encode,decode}]`
+```
+python .\morse.py [-h] [-d {encode,decode}]
+```
 
 Command line arguments:
 ```
