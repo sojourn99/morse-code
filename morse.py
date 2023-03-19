@@ -91,7 +91,7 @@ morse_decode = {
 
 
 def main():
-    parser = argparse.ArgumentParser(prog="Morse code",
+    parser = argparse.ArgumentParser(prog="morse.py",
                                      description="Encodes text to Morse and decodes Morse code to text")
     parser.add_argument("-d", "--direction", choices=["encode", "decode"], help="select encode or decode", type=str)
     args = parser.parse_args()
