@@ -1,5 +1,5 @@
 # Text to Morse Code Convertor
-#### Video Demo:  PM <URL HERE>
+#### [Video Demo](https://youtu.be/FSZZMX1bZM4)
 #### Description:
 This project is a text-based (command-line) Python program to convert Strings into International Morse Code, and Morse Code into text. 
 It takes any String text input and encodes this to Morse code, as well takes any Morse code input to decode to text.
@@ -39,7 +39,7 @@ When input is not valid the output of the program will be: "Invalid input".
 The functions `convert_to_morse_code()` and `convert_from_morse_code()` are responsible for the conversion. 
 To be able to convert each text character a dictionary is used with the characters as keys and the corresponding Morse code symbols as values.
 To be able to convert each Morse code symbol a dictionary is used with the Morse code symbols as keys and the corresponding text characters as values. 
-When a character or Morse code symbol is not available in the respective dictionaries a `KeyError` exception is raised with an appropriate message to the user.
+When a character or Morse code symbol is not available in the respective dictionaries an exception is raised with an appropriate message to the user.
 
 File test_morse.py contains several unit tests for testing correct and incorrect input, the conversion functions and whether the expected exception is raised when encoding or decoding fails. 
 Module pytest is needed to run these tests:
