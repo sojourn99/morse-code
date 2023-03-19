@@ -155,8 +155,8 @@ def convert_from_morse_code(code: str):
         for char in chars:
             try:
                 text += morse_decode[char]
-            except KeyError:
-                raise KeyError(f"Cannot decode morse code symbol: {char}")
+            except KeyError as e:
+                raise Exception(f"Cannot decode morse code symbol: {char}") from e
         # separate words by one space
         text += " "
 
@@ -181,8 +181,8 @@ def convert_to_morse_code(text: str):
             try:
                 # separate each symbol by three spaces
                 code += morse_encode[char] + "   "
-            except KeyError:
-                raise KeyError(f"Cannot encode character: {char}")
+            except KeyError as e:
+                raise Exception(f"Cannot encode character: {char}") from e
         # add 4 spaces to separate words by 7 spaces
         code += "    "
     return code.strip()
