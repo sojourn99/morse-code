@@ -32,15 +32,17 @@ When entering Morse code use the dot character `.` for a 'dit', a dash character
 
 All functions of program morse.py are documented using Docstrings.
 Function `main()` processes the input and makes calls to the validation and conversion functions.
-The program uses the argparse module for the command-line interface.
-Regular expressions (module re) are used to validate the input (functions `validate_text_input()` and `validate_morse_code()`). 
+The program uses the `argparse` module for the command-line interface.
+Regular expressions (module `re`) are used to validate the input (functions `validate_text_input()` and `validate_morse_code()`). 
 When input is not valid the output of the program will be: "Invalid input". 
 
 The functions `convert_to_morse_code()` and `convert_from_morse_code()` are responsible for the conversion. 
 To be able to convert each text character a dictionary is used with the characters as keys and the corresponding Morse code symbols as values.
 To be able to convert each Morse code symbol a dictionary is used with the Morse code symbols as keys and the corresponding text characters as values. 
+When a character or Morse code symbol is not available in the respective dictionaries a `KeyError` exception is raised with an appropriate message to the user.
 
-File test_morse.py contains several unit tests. Module pytest is needed to run these tests:
+File test_morse.py contains several unit tests for testing correct and incorrect input, the conversion functions and whether the expected exception is raised when encoding or decoding fails. 
+Module pytest is needed to run these tests:
 ```
 pytest .\test_morse.py
 ```
