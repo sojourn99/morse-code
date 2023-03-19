@@ -91,11 +91,6 @@ morse_decode = {
 
 
 def main():
-    # TODO proces file with text/morse code, output to file
-    # TODO add procedural signs for morse code
-    # TODO add README.md
-    # TODO add requirements.txt
-
     parser = argparse.ArgumentParser(prog="Morse code",
                                      description="Encodes text to Morse and decodes Morse code to text")
     parser.add_argument("-d", "--direction", choices=["encode", "decode"], help="select encode or decode", type=str)
